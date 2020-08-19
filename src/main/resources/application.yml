@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/music
+    username: postgres
+    password: root123
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:db/changelog/master/db.changelog-master.xml
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect.
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate

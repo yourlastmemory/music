@@ -24,5 +24,19 @@ public class Musician {
 
     private String biography;
 
+    private Gender gender;
+
+    private VoiceType voiceType;
+
     private List<BandMember> bands;
+
+    private List<VocalStyle> vocalStyles;
+
+    public void setVoiceType(VoiceType voiceType) {
+        if (null != this.gender
+                && !this.gender.equals(voiceType.getGender())) {
+            this.voiceType = VoiceType.getNearestVoiceType(this.gender);
+        }
+        this.voiceType = voiceType;
+    }
 }

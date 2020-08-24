@@ -24,6 +24,10 @@ public class Musician {
 
     private String biography;
 
+    private String country;
+
+    private String city;
+
     private Gender gender;
 
     private VoiceType voiceType;

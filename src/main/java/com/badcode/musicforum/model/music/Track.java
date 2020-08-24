@@ -11,6 +11,8 @@ public class Track {
 
     private String name;
 
+    private String text;
+
     private List<Band> authors;
 
     private Album album;

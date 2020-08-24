@@ -7,6 +7,7 @@
             <column name="band_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKeyName="bands_pk"
                              primaryKey="true"
+                             unique="true"
                              nullable="false"/>
             </column>
             <column name="band_name" type="VARCHAR(50)">

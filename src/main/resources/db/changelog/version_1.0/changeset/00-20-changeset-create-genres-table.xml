@@ -5,7 +5,7 @@
     <changeSet id="00200" author="yourlastmemory">
         <createTable tableName="genres" schemaName="music">
             <column name="genre_id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="true" unique="true" nullable="false"/>
             </column>
             <column name="genre_name" type="VARCHAR(32)">
                 <constraints nullable="false"/>

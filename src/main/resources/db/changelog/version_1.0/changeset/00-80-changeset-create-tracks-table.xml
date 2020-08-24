@@ -8,6 +8,7 @@
                     type="BIGINT"
                     autoIncrement="true">
                 <constraints primaryKey="true"
+                             unique="true"
                              primaryKeyName="tracks_pk"
                              nullable="false"/>
             </column>

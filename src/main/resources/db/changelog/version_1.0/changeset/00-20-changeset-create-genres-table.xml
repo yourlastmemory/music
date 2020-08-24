@@ -1,0 +1,28 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="00200" author="yourlastmemory">
+        <createTable tableName="genres" schemaName="music">
+            <column name="genre_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="genre_name" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre_origin_country" type="VARCHAR(32)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="genre_origin_year" type="INTEGER">
+                <constraints nullable="true"/>
+            </column>
+            <column name="genre_description" type="TEXT">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropAllForeignKeyConstraints baseTableName="genre" baseTableSchemaName="music"/>
+            <dropTable tableName="genres" schemaName="music"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

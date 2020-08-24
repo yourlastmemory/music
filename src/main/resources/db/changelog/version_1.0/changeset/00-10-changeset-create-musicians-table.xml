@@ -1,0 +1,43 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="00100" author="yourlastmemory">
+        <createTable tableName="musicians" schemaName="music">
+            <column name="musician_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="musician_first_name" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="musician_middle_name" type="VARCHAR(32)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="musician_last_name" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="musician_photo" type="VARCHAR(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="musician_date_of_birth" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="musician_date_of_death" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+            <column name="musician_biography" type="TEXT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="musician_country" type="VARCHAR(80)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="musician_city" type="VARCHAR(80)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropAllForeignKeyConstraints baseTableName="musicians" baseTableSchemaName="music"/>
+            <dropTable tableName="musicians" schemaName="music"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

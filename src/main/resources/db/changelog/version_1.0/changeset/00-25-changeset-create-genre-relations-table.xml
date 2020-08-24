@@ -1,0 +1,45 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="00250" author="yourlastmemory">
+        <createTable tableName="genres_relations" schemaName="music">
+            <column name="genres_relations_super_genre_id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genres_relations_sub_genre_id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="genres_relations"
+                             schemaName="music"
+                             columnNames="genres_relations_super_genre_id,genres_relations_sub_genre_id"
+                             constraintName="genres_relations_uc"/>
+        <addForeignKeyConstraint baseTableSchemaName="music"
+                                 baseTableName="genres_relations"
+                                 baseColumnNames="genres_relations_super_genre_id"
+                                 constraintName="genres_relations_super_genre_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="genres"
+                                 referencedColumnNames="genre_id"/>
+        <addForeignKeyConstraint baseTableSchemaName="music"
+                                 baseTableName="genres_relations"
+                                 baseColumnNames="genres_relations_sub_genre_id"
+                                 constraintName="genres_relations_sub_genre_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="genres"
+                                 referencedColumnNames="genre_id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="genres_relations"
+                                      constraintName="genres_relations_super_genre_fk"/>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="genres_relations"
+                                      constraintName="genres_relations_sub_genre_fk"/>
+            <dropUniqueConstraint tableName="genres_relations"
+                                  schemaName="music"
+                                  constraintName="genres_relations_uc"/>
+            <dropTable tableName="genres_relations" schemaName="music"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

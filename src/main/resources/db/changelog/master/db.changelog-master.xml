@@ -10,6 +10,9 @@
     <changeSet id="1" author="yourlastmemory">
         <tagDatabase tag="db_version_1.0"/>
     </changeSet>
-    <!--    <include file="classpath:liquibase/db.changelog-1.000.xml"/>-->
-    <!--    <include file="classpath:liquibase/db.changelog-1.1.xml"/>-->
+    <include file="db/changelog/version_1.1/changelog-1.1-cumulative.xml"/>
+
+    <changeSet id="1.1" author="yourlastmemory">
+        <tagDatabase tag="db_version_1.1"/>
+    </changeSet>
 </databaseChangeLog>

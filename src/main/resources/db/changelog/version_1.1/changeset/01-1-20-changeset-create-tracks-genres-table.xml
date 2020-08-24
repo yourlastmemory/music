@@ -1,0 +1,45 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="01_200" author="yourlastmemory">
+        <createTable tableName="tracks_genres" schemaName="music">
+            <column name="tracks_genres_track_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tracks_genres_genre_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint schemaName="music"
+                             tableName="tracks_genres"
+                             columnNames="tracks_genres_track_id,tracks_genres_genre_id"
+                             constraintName="tracks_genres_uc"/>
+        <addForeignKeyConstraint baseTableSchemaName="music"
+                                 baseTableName="tracks_genres"
+                                 baseColumnNames="tracks_genres_track_id"
+                                 constraintName="tracks_genres_track_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="tracks"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableSchemaName="music"
+                                 baseTableName="tracks_genres"
+                                 baseColumnNames="tracks_genres_genre_id"
+                                 constraintName="tracks_genres_genre_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="genres"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="tracks_genres"
+                                      constraintName="tracks_genres_genre_fk"/>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="tracks_genres"
+                                      constraintName="tracks_genres_track_fk"/>
+            <dropUniqueConstraint schemaName="music"
+                                  tableName="tracks_genres"
+                                  constraintName="tracks_genres_uc"/>
+            <dropTable schemaName="music" tableName="tracks_genres"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

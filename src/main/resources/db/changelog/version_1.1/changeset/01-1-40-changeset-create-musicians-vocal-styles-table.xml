@@ -1,0 +1,45 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="01_400" author="yourlastmemory">
+        <createTable tableName="musicians_vocal_styles" schemaName="music">
+            <column name="musicians_vocal_styles_musician" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="musicians_vocal_styles_style" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint schemaName="music"
+                             tableName="musicians_vocal_styles"
+                             columnNames="musicians_vocal_styles_musician,musicians_vocal_styles_style"
+                             constraintName="musicians_vocal_styles_uc"/>
+        <addForeignKeyConstraint baseTableSchemaName="music"
+                                 baseTableName="musicians_vocal_styles"
+                                 baseColumnNames="musicians_vocal_styles_musician"
+                                 constraintName="musicians_vocal_styles_musician_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="musicians"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableSchemaName="music"
+                                 baseTableName="musicians_vocal_styles"
+                                 baseColumnNames="musicians_vocal_styles_style"
+                                 constraintName="musicians_vocal_styles_style_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="vocal_styles"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="musicians_vocal_styles"
+                                      constraintName="musicians_vocal_styles_style_fk"/>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="musicians_vocal_styles"
+                                      constraintName="musicians_vocal_styles_musician_fk"/>
+            <dropUniqueConstraint schemaName="music"
+                                  tableName="musicians_vocal_styles"
+                                  constraintName="musicians_vocal_styles_uc"/>
+            <dropTable schemaName="music" tableName="musicians_vocal_styles"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

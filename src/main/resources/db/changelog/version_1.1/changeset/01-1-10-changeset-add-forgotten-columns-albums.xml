@@ -1,0 +1,22 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="01_100" author="yourlastmemory">
+        <addColumn schemaName="music" tableName="albums">
+            <column name="album_release_date" type="TIMESTAMP"/>
+            <column name="album_cover" type="VARCHAR(256)"/>
+            <column name="album_type" type="music.album_type"/>
+        </addColumn>
+        <addUniqueConstraint schemaName="music"
+                             tableName="albums"
+                             columnNames="album_name,album_author,album_release_date"
+                             constraintName="album_uc"/>
+        <rollback>
+            <dropUniqueConstraint schemaName="music" tableName="albums" constraintName="album_uc"/>
+            <dropColumn schemaName="music" tableName="albums" columnName="album_release_date"/>
+            <dropColumn schemaName="music" tableName="albums" columnName="album_cover"/>
+            <dropColumn schemaName="music" tableName="albums" columnName="album_type"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

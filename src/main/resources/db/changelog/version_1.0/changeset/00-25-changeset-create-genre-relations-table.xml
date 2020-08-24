@@ -4,10 +4,10 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="00250" author="yourlastmemory">
         <createTable tableName="genres_relations" schemaName="music">
-            <column name="genres_relations_super_genre_id" type="BIGINT" autoIncrement="true">
+            <column name="genres_relations_super_genre_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="genres_relations_sub_genre_id" type="BIGINT" autoIncrement="true">
+            <column name="genres_relations_sub_genre_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
         </createTable>

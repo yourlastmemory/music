@@ -5,8 +5,8 @@
     <changeSet id="00800" author="yourlastmemory">
         <createTable tableName="tracks" schemaName="music">
             <column name="track_id"
-                    type="BIGINT"
-                    autoIncrement="true">
+                    type="uuid"
+            >
                 <constraints primaryKey="true"
                              unique="true"
                              primaryKeyName="tracks_pk"
@@ -21,7 +21,7 @@
             <column name="track_length" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="track_album" type="BIGINT">
+            <column name="track_album" type="uuid">
                 <constraints nullable="false"/>
             </column>
         </createTable>

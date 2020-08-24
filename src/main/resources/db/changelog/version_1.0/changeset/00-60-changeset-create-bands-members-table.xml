@@ -5,17 +5,17 @@
     <changeSet id="00600" author="yourlastmemory">
         <createTable tableName="bands_members" schemaName="music">
             <column name="band_member_id"
-                    type="BIGINT"
-                    autoIncrement="true">
+                    type="uuid"
+            >
                 <constraints primaryKey="true"
                              unique="true"
                              primaryKeyName="bands_members_pk"
                              nullable="false"/>
             </column>
-            <column name="band_member_band_id" type="BIGINT">
+            <column name="band_member_band_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="band_member_musician_id" type="BIGINT">
+            <column name="band_member_musician_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
 

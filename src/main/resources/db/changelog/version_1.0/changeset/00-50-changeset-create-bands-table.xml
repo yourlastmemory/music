@@ -4,7 +4,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="00500" author="yourlastmemory">
         <createTable tableName="bands" schemaName="music">
-            <column name="band_id" type="BIGINT" autoIncrement="true">
+            <column name="band_id" type="uuid">
                 <constraints primaryKeyName="bands_pk"
                              primaryKey="true"
                              unique="true"

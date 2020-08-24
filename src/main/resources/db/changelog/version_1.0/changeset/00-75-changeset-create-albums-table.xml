@@ -4,7 +4,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="00750" author="yourlastmemory">
         <createTable tableName="albums" schemaName="music">
-            <column name="album_id"
+            <column name="id"
                     type="uuid"
             >
                 <constraints primaryKey="true"
@@ -28,7 +28,7 @@
                                  constraintName="album_author_fk"
                                  referencedTableSchemaName="music"
                                  referencedTableName="bands"
-                                 referencedColumnNames="band_id"/>
+                                 referencedColumnNames="id"/>
         <rollback>
             <dropForeignKeyConstraint baseTableSchemaName="music"
                                       baseTableName="albums"

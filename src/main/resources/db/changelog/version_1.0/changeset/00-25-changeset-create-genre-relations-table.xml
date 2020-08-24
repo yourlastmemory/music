@@ -21,14 +21,14 @@
                                  constraintName="genres_relations_super_genre_fk"
                                  referencedTableSchemaName="music"
                                  referencedTableName="genres"
-                                 referencedColumnNames="genre_id"/>
+                                 referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableSchemaName="music"
                                  baseTableName="genres_relations"
                                  baseColumnNames="genres_relations_sub_genre_id"
                                  constraintName="genres_relations_sub_genre_fk"
                                  referencedTableSchemaName="music"
                                  referencedTableName="genres"
-                                 referencedColumnNames="genre_id"/>
+                                 referencedColumnNames="id"/>
         <rollback>
             <dropForeignKeyConstraint baseTableSchemaName="music"
                                       baseTableName="genres_relations"

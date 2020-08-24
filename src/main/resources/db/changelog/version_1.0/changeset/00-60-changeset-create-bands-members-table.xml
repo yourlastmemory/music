@@ -4,9 +4,8 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="00600" author="yourlastmemory">
         <createTable tableName="bands_members" schemaName="music">
-            <column name="band_member_id"
-                    type="uuid"
-            >
+            <column name="id"
+                    type="uuid">
                 <constraints primaryKey="true"
                              unique="true"
                              primaryKeyName="bands_members_pk"
@@ -36,14 +35,14 @@
                                  constraintName="band_member_band_fk"
                                  referencedTableSchemaName="music"
                                  referencedTableName="bands"
-                                 referencedColumnNames="band_id"/>
+                                 referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableSchemaName="music"
                                  baseTableName="bands_members"
                                  baseColumnNames="band_member_musician_id"
                                  constraintName="band_member_musician_fk"
                                  referencedTableSchemaName="music"
                                  referencedTableName="musicians"
-                                 referencedColumnNames="musician_id"/>
+                                 referencedColumnNames="id"/>
         <rollback>
             <dropForeignKeyConstraint baseTableSchemaName="music"
                                       baseTableName="bands_members"

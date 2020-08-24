@@ -2,6 +2,7 @@ package com.badcode.musicforum.model.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -9,10 +10,10 @@ import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Base class with property 'id'.
@@ -25,18 +26,19 @@ import java.util.Date;
 @MappedSuperclass
 @Data
 @NoArgsConstructor
-public class BaseEntity {
+public abstract class AbstractBaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private UUID id;
 
     @CreatedDate
-    @Column(name = "created")
+    @Column(name = "created_date")
     private Date created;
 
     @LastModifiedDate
-    @Column(name = "updated")
+    @Column(name = "updated_date")
     private Date updated;
 
     @Enumerated(EnumType.STRING)

@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "users")
 @Data
-public class User extends BaseEntity implements UserDetails {
+public class User extends AbstractBaseEntity implements UserDetails {
 
     @Column(name = "username")
     private String username;

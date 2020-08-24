@@ -21,7 +21,7 @@ import java.util.List;
 @Entity
 @Table(name = "roles")
 @Data
-public class Role extends BaseEntity {
+public class Role extends AbstractBaseEntity {
 
     @Column(name = "name")
     private String name;

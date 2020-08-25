@@ -1,0 +1,59 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="00600" author="yourlastmemory">
+        <createTable tableName="bands_members" schemaName="music">
+            <column name="id"
+                    type="uuid">
+                <constraints primaryKey="true"
+                             unique="true"
+                             primaryKeyName="bands_members_pk"
+                             nullable="false"/>
+            </column>
+            <column name="band_member_band_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="band_member_musician_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="band_member_joined_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="band_member_left_date" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="bands_members"
+                             schemaName="music"
+                             columnNames="band_member_band_id,band_member_musician_id,band_member_joined_date"
+                             constraintName="band_member_uc"/>
+        <addForeignKeyConstraint baseTableSchemaName="music"
+                                 baseTableName="bands_members"
+                                 baseColumnNames="band_member_band_id"
+                                 constraintName="band_member_band_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="bands"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableSchemaName="music"
+                                 baseTableName="bands_members"
+                                 baseColumnNames="band_member_musician_id"
+                                 constraintName="band_member_musician_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="musicians"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="bands_members"
+                                      constraintName="band_member_band_fk"/>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="bands_members"
+                                      constraintName="band_member_musician_fk"/>
+            <dropUniqueConstraint tableName="bands_members"
+                                  schemaName="music"
+                                  constraintName="band_member_uc"/>
+            <dropTable tableName="bands_members" schemaName="music"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

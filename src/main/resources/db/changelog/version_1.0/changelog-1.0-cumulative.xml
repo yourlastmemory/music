@@ -1,0 +1,18 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="changeset/00-10-changeset-create-musicians-table.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-20-changeset-create-genres-table.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-25-changeset-create-genre-relations-table.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-30-changeset-create-gender-type.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-35-changeset-add-gender-for-musician.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-40-changeset-create-voice-type-enum.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-45-changeset-add-voice-type-for-musicians.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-50-changeset-create-bands-table.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-60-changeset-create-bands-members-table.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-70-changeset-create-album-type-enum.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-75-changeset-create-albums-table.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/00-80-changeset-create-tracks-table.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

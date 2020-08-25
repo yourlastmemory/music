@@ -1,0 +1,42 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="00500" author="yourlastmemory">
+        <createTable tableName="bands" schemaName="music">
+            <column name="id" type="uuid">
+                <constraints primaryKeyName="bands_pk"
+                             primaryKey="true"
+                             unique="true"
+                             nullable="false"/>
+            </column>
+            <column name="band_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="band_photo" type="VARCHAR(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="band_country" type="VARCHAR(80)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="band_city" type="VARCHAR(80)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="band_formed_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="band_disband_date" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="bands"
+                             schemaName="music"
+                             columnNames="band_name,band_country,band_formed_date"
+                             constraintName="bands_uc"/>
+        <rollback>
+            <dropUniqueConstraint tableName="bands"
+                                  schemaName="music"/>
+            <dropTable tableName="bands" schemaName="music"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

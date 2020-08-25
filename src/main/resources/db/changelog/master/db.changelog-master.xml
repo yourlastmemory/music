@@ -2,6 +2,17 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-<!--    <include file="classpath:liquibase/db.changelog-1.000.xml"/>-->
-<!--    <include file="classpath:liquibase/db.changelog-1.1.xml"/>-->
+    <changeSet id="0" author="yourlastmemory">
+        <tagDatabase tag="db_init"/>
+    </changeSet>
+    <include file="db/changelog/version_1.0/changelog-1.0-cumulative.xml"/>
+
+    <changeSet id="1" author="yourlastmemory">
+        <tagDatabase tag="db_version_1.0"/>
+    </changeSet>
+    <include file="db/changelog/version_1.1/changelog-1.1-cumulative.xml"/>
+
+    <changeSet id="1.1" author="yourlastmemory">
+        <tagDatabase tag="db_version_1.1"/>
+    </changeSet>
 </databaseChangeLog>

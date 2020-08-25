@@ -1,0 +1,41 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="00750" author="yourlastmemory">
+        <createTable tableName="albums" schemaName="music">
+            <column name="id"
+                    type="uuid"
+            >
+                <constraints primaryKey="true"
+                             unique="true"
+                             primaryKeyName="album_pk"
+                             nullable="false"/>
+            </column>
+            <column name="album_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="album_description" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="album_author" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="albums"
+                                 baseTableSchemaName="music"
+                                 baseColumnNames="album_author"
+                                 constraintName="album_author_fk"
+                                 referencedTableSchemaName="music"
+                                 referencedTableName="bands"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableSchemaName="music"
+                                      baseTableName="albums"
+                                      constraintName="album_author_fk"/>
+            <dropUniqueConstraint tableName="albums"
+                                  schemaName="music"/>
+            <dropTable tableName="albums" schemaName="music"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

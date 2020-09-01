@@ -19,7 +19,7 @@ import java.util.UUID;
  * Base class with property 'id'.
  * Used as a base class for all objects that requires this property.
  *
- * @author ivashenko.v
+ * @author yourlastmemory
  * @version 1.0
  */
 
